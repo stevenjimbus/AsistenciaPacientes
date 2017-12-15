@@ -559,16 +559,14 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
         RotateBaseYPR(CorreccionAnguloImage,0,0);
         sleep(3);
 
-        int acorralarbotella [12] = {0.0659611,0.0368156,-0.078233,-0.569107,-1.33309,0.7,-0.0107379,-0.00920391,-0.185612,0.549165,1.63827,0.7};
-        //positionArms(acorralarbotella);
-
         
         
 
         if(MessageFromCallBack.compare("botella") == 0)
         {
           ShoulderRoll(2,0.7,-2,0.7);
-          //ElbowRoll(-45,0.5,45,0.5);
+          sleep(2);
+          ElbowRoll(-44,0.7,44,0.7);
           sleep(2);
           ShoulderPitch(-10,1,-10,1);
           sleep(2);
