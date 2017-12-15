@@ -567,13 +567,13 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
 
         if(MessageFromCallBack.compare("botella") == 0)
         {
-          ElbowRoll(-46,0.9,45,0.9);
+          ElbowRoll(-47,0.9,47,0.9);
           sleep(2);
           ShoulderPitch(-10,1,-10,1);
           sleep(2);
           DesplazarBaseXYZ(-0.3,0,0);
           sleep(4); 
-          ShoulderPitch(5,1,5,1);
+          ShoulderPitch(20,1,20,1);
           sleep(2);
 
         }

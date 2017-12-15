@@ -418,7 +418,7 @@ void callBack(const std_msgs::String::ConstPtr& messageObject)
 
               if(distanciaHastaElObjeto>1)
               {
-                cambioHeadPitch = -6*distanciaHastaElObjeto+25;
+                cambioHeadPitch = -2.5*distanciaHastaElObjeto+12.5;
                 tiempoDeEspera = distanciaHastaElObjeto*4;
                 
                 DistanciaAvancePorcentaje = 0.75*(distanciaHastaElObjeto - 0.97);
