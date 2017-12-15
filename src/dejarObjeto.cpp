@@ -474,7 +474,7 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
     cv::Mat imageCV = imgOriginal->image;
 
 
-    AvanzarHaciaElObjeto=0.78;
+    AvanzarHaciaElObjeto=0.6;
     if(MessageFromCallBack.compare("botella") == 0)
     {
         ShoulderPitch(0,1,0,1);
@@ -503,9 +503,9 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
 
     if(MessageFromCallBack.compare("QRcodeGOOD") == 0)
     {
-      ShoulderRoll(45,1,-45,1);
+      ShoulderPitch(-10,1,-10,1);
       sleep(2);
-      AvanzarHaciaElObjeto=0.78;
+      AvanzarHaciaElObjeto=0.3;
        
     }      
 
@@ -580,9 +580,7 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
 
         if(MessageFromCallBack.compare("botella") == 0)
         {
-          ElbowRoll(-46,0.9,45,0.9);
-          sleep(2);
-          ShoulderPitch(10,1,10,1);
+          
         }
 
         if(MessageFromCallBack.compare("cafe") == 0)
@@ -598,7 +596,18 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
         if(MessageFromCallBack.compare("chocolate") == 0)
         {
            
-        } 
+        }
+        if(MessageFromCallBack.compare("QRcodeGOOD") == 0)
+        {
+          ShoulderPitch(5,1,5,1);
+          sleep(2);
+          ElbowRoll(-35,0.9,35,0.9);
+          sleep(2);          
+          DesplazarBaseXYZ(-0.3,0,0);
+          sleep(4);
+          system("python /home/steven/importantPythonScripts/restPose.py"); 
+          
+        }  
 
         
 

@@ -111,12 +111,12 @@ naoqi_bridge_msgs::JointAnglesWithSpeed msg;
 
 double degreesToRadians(const double& degrees)
 {
-    return degrees*3.14159/180.0;
+    return degrees*3.14159/180;
 }
 
 double RadiansToDegress(const double& Radians)
 {
-    return Radians*180.0/3.14159;
+    return Radians*180/3.14159;
 }
 
 
@@ -567,7 +567,8 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
 
         if(MessageFromCallBack.compare("botella") == 0)
         {
-          ElbowRoll(-47,0.9,47,0.9);
+          ShoulderRoll(2,0.7,-2,0.7);
+          //ElbowRoll(-45,0.5,45,0.5);
           sleep(2);
           ShoulderPitch(-10,1,-10,1);
           sleep(2);
@@ -646,6 +647,7 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
 int main(int argc, char **argv)
 {
   system("python /home/steven/importantPythonScripts/blockArmsWhenWalk.py");
+  system("python /home/steven/importantPythonScripts/deactivateReflexes.py");
 
 
   ros::init(argc, argv, "tomarObjeto");
