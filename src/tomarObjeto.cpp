@@ -55,7 +55,7 @@ ros::Subscriber tag_sub;
 
 ros::Publisher moveBase_pub;
 
-ros::Publisher goGetTheObject;
+ros::Publisher MapForQRcode_pub;
 
 
 boost::shared_ptr<ros::NodeHandle> nh_ptr_;
@@ -569,7 +569,13 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
         {
           ElbowRoll(-46,0.9,45,0.9);
           sleep(2);
-          ShoulderPitch(10,1,10,1);
+          ShoulderPitch(-10,1,-10,1);
+          sleep(2);
+          DesplazarBaseXYZ(-0.3,0,0);
+          sleep(4); 
+          ShoulderPitch(5,1,5,1);
+          sleep(2);
+
         }
 
         if(MessageFromCallBack.compare("cafe") == 0)
@@ -585,7 +591,13 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
         if(MessageFromCallBack.compare("chocolate") == 0)
         {
            
-        } 
+        }
+
+        std_msgs::String msg;
+        std::stringstream ss;
+        ss << "QRcodeGOOD";
+        msg.data = ss.str(); 
+        MapForQRcode_pub.publish(msg);
 
         
 
@@ -653,7 +665,7 @@ int main(int argc, char **argv)
 
 
 
-  
+  MapForQRcode_pub = nh_ptr_->advertise<std_msgs::String>("/go_map_QR_code", 1);
 
   //Publicar a mover base 
   moveBase_pub = nh_ptr_->advertise<geometry_msgs::PoseStamped>("/move_base_simple/goal", 1);

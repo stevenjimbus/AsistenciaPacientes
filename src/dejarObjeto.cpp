@@ -504,6 +504,8 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
     if(MessageFromCallBack.compare("QRcodeGOOD") == 0)
     {
       ShoulderRoll(45,1,-45,1);
+      sleep(2);
+      AvanzarHaciaElObjeto=0.78;
        
     }      
 
