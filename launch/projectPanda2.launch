@@ -1,0 +1,18 @@
+<launch>
+
+  
+  <node pkg="rcnn_live_detector" type="mapArea" name="map_Area" output="screen" launch-prefix="xterm -e">
+  </node>
+
+  <node pkg="rcnn_live_detector" type="acercarseFino" name="acercarseFino" output="screen" launch-prefix="xterm -e">
+  </node>
+
+  <node pkg="rcnn_live_detector" type="servicioprofundidadProjectPanda" name="servicioprofundidadProjectPanda" output="screen" launch-prefix="xterm -e">
+  </node>
+
+
+
+
+  
+
+</launch>
