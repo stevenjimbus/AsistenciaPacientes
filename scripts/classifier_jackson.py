@@ -80,35 +80,11 @@ def centinel_cb(req):
 
 
 
-    #plt.show()
-
-    print(generatedMap)
-
-
     generatedMapClasses = generatedMap["classes"]
     generatedMapBBoxes  = generatedMap["bboxes"]
     generatedMapScores  = generatedMap["scores"]
 
-    print(generatedMapScores)
 
-
-    
-
-
-
-    '''
-    if len(generatedMapClasses)>0:
-        for x in range(0, len(generatedMapClasses)):
-            print(x)
-            print(generatedMapClasses[x])
-            print(generatedMapBBoxes[x])
-            print((generatedMapScores[x]))
-            msg = Prediction()
-            msg.label = generatedMapClasses[x]
-            msg.bbox = generatedMapBBoxes[x]  
-            msg.score = float((generatedMapScores[x])) 
-            lista.append(msg) 
-    '''  
 
      
 
