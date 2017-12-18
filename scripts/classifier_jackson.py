@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-
+import decimal
 import sys
 import rospy
 import os
@@ -13,7 +13,6 @@ from subprocess import call
 from rcnn_live_detector.msg import Prediction
 from rcnn_live_detector.msg import PredictionsList
 from rcnn_live_detector.srv import *
-
 
 def add_path(path):
     if path not in sys.path:
@@ -39,6 +38,7 @@ from cv_bridge import CvBridge, CvBridgeError
 
 
 
+D = decimal.Decimal
 
 
 
@@ -82,27 +82,55 @@ def centinel_cb(req):
 
     #plt.show()
 
- 
+    print(generatedMap)
 
-    msg = Prediction()
+
+    generatedMapClasses = generatedMap["classes"]
+    generatedMapBBoxes  = generatedMap["bboxes"]
+    generatedMapScores  = generatedMap["scores"]
+
+    print(generatedMapScores)
+
+
+    
+
+
+
+    '''
+    if len(generatedMapClasses)>0:
+        for x in range(0, len(generatedMapClasses)):
+            print(x)
+            print(generatedMapClasses[x])
+            print(generatedMapBBoxes[x])
+            print((generatedMapScores[x]))
+            msg = Prediction()
+            msg.label = generatedMapClasses[x]
+            msg.bbox = generatedMapBBoxes[x]  
+            msg.score = float((generatedMapScores[x])) 
+            lista.append(msg) 
+    '''  
 
      
 
     try:
-        msg.label = generatedMap["classes"]
-        msg.bbox = generatedMap["bboxes"]  
-        msg.score = float(generatedMap["scores"])        
+        if len(generatedMapClasses)>0:
+            for x in range(0, len(generatedMapClasses)):
+                print(x)
+                print(generatedMapClasses[x])
+                print(generatedMapBBoxes[x])
+                print((generatedMapScores[x]))
+                msg = Prediction()
+                msg.label = generatedMapClasses[x]
+                msg.bbox = generatedMapBBoxes[x]  
+                msg.score = float((generatedMapScores[x])) 
+                lista.append(msg)      
     except:
-    	print("No hay objeto score=0")
+        print("No hay objeto score=0")
         msg.label = "NotObjectDetected"
         msg.bbox = [10,10,40,40]  
-        msg.score = float(0.5)    
+        msg.score = float(0.5)  
 
-
-
-
-
-    lista.append(msg)
+    
     msgList = PredictionsList()
     msgList.n = len(lista)
     msgList.predictions = lista   
