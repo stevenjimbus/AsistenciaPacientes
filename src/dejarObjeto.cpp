@@ -547,7 +547,7 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
     
     std::cout << "Distancia que avanza el robot: " << AvanzarHaciaElObjeto << std::endl;
     DesplazarBaseXYZ(AvanzarHaciaElObjeto,0,0); 
-    sleep(3);
+    sleep(2);
 
 
 
@@ -591,7 +591,7 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
         std::cout << "Correccion Angulo Imagen: " << CorreccionAnguloImage << std::endl;
         
         RotateBaseYPR(CorreccionAnguloImage,0,0);
-        sleep(3);
+        sleep(1);
 
         int acorralarbotella [12] = {0.0659611,0.0368156,-0.078233,-0.569107,-1.33309,0.7,-0.0107379,-0.00920391,-0.185612,0.549165,1.63827,0.7};
         //positionArms(acorralarbotella);
@@ -622,10 +622,9 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
         {
           ShoulderPitch(5,1,5,1);
           sleep(2);
-          ElbowRoll(-10,0.9,10,0.9);
-          sleep(2);          
+                   
           DesplazarBaseXYZ(-0.6,0,0);
-          sleep(4);
+          sleep(2);
           system("python /home/steven/importantPythonScripts/restPose.py"); 
           
         }  

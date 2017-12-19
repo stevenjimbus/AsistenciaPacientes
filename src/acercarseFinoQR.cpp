@@ -389,7 +389,7 @@ void callBack(const std_msgs::String::ConstPtr& messageObject)
           CorreccionAnguloImage = 27.6 - centroideObjetoRGBX*55.2/640;//640x480
           std::cout << "Correccion Angulo Imagen: " << CorreccionAnguloImage << std::endl;
           RotateBaseYPR(CorreccionAnguloImage,0,0);
-          sleep(3);
+          sleep(1);
           
           /*DECLARACION DEL REQUEST AL SERVICIO: servicioClasificacion*/
           servicioProfundidad.request.image = *in_image_DEPTH;
@@ -419,7 +419,7 @@ void callBack(const std_msgs::String::ConstPtr& messageObject)
               if(distanciaHastaElObjeto>1)
               {
                 cambioHeadPitch = -2.5*distanciaHastaElObjeto+12.5;
-                tiempoDeEspera = distanciaHastaElObjeto*4;
+                tiempoDeEspera = distanciaHastaElObjeto*2;
                 
                 DistanciaAvancePorcentaje = 0.75*(distanciaHastaElObjeto - 0.97);
                 if(distanciaHastaElObjeto<1.3)
@@ -430,7 +430,7 @@ void callBack(const std_msgs::String::ConstPtr& messageObject)
                 DesplazarBaseXYZ(DistanciaAvancePorcentaje,0,0);
                 sleep(tiempoDeEspera);
                 setHeadPosition(0,cambioHeadPitch);
-                sleep(2);
+                //sleep(2);
               }
               
               if(distanciaHastaElObjeto<1)

@@ -567,7 +567,7 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
     
     std::cout << "Distancia que avanza el robot: " << AvanzarHaciaElObjeto << std::endl;
     DesplazarBaseXYZ(AvanzarHaciaElObjeto,0,0); 
-    sleep(5);
+    sleep(3);
 
 
 
@@ -619,8 +619,14 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
         if(MessageFromCallBack.compare("botella") == 0)
         {
           system("python /home/steven/importantPythonScripts/sujetarBotella.py");
+
+          ShoulderPitch(-10,1,-10,1);
+          sleep(5);
           
           DesplazarBaseXYZ(-0.6,0,0);
+          sleep(2);
+
+          ShoulderPitch(10,1,10,1);
           sleep(2);
            
         }
@@ -629,7 +635,13 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
         {
           system("python /home/steven/importantPythonScripts/sujetarCafe.py");
           
+          ShoulderPitch(-10,1,-10,1);
+          sleep(5);
+          
           DesplazarBaseXYZ(-0.6,0,0);
+          sleep(2);
+
+          ShoulderPitch(10,1,10,1);
           sleep(2);
           
            
@@ -639,7 +651,13 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
         {
           system("python /home/steven/importantPythonScripts/sujetarPalomitas.py");
           
+          ShoulderPitch(-10,1,-10,1);
+          sleep(5);
+          
           DesplazarBaseXYZ(-0.6,0,0);
+          sleep(2);
+
+          ShoulderPitch(10,1,10,1);
           sleep(2);
           
            
@@ -649,7 +667,13 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
         {
           system("python /home/steven/importantPythonScripts/sujetarChocolate.py");
           
+          ShoulderPitch(-10,1,-10,1);
+          sleep(5);
+          
           DesplazarBaseXYZ(-0.6,0,0);
+          sleep(2);
+
+          ShoulderPitch(10,1,10,1);
           sleep(2);
            
            

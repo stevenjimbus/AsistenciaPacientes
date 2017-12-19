@@ -337,8 +337,8 @@ void callBack(const std_msgs::String::ConstPtr& messageObject)
 
 
           RotateBaseYPR(alinearTorsoAnguloYaw, pitchTorsoInicial, rollTorsoInicial);
-          setHeadPosition(0,6);
-          sleep(5);
+          setHeadPosition(0,10);
+          sleep(1);
           CorreccionCVimagePuntero = punteroImagenRGB();
           cv_bridge::CvImageConstPtr CorreccionCVimageBridge = cv_bridge::toCvShare(CorreccionCVimagePuntero, sensor_msgs::image_encodings::BGR8);
           cv::Mat CorreccionCVimageMat = CorreccionCVimageBridge->image;
@@ -378,7 +378,7 @@ void callBack(const std_msgs::String::ConstPtr& messageObject)
       parametroBase++;
       parametroHead=-5;
       RotateBaseYPR(90,0,0);
-      sleep(5);
+      sleep(1);
       }
 
       if(parametroBase > 4){
