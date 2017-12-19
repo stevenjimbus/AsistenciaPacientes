@@ -468,7 +468,7 @@ void callBack(const std_msgs::String::ConstPtr& messageObject)
                 
                 flagMenorA1Metro = false;
                 std::cout <<"++++++Termina Acercarse Fino, cambia a " << flagMenorA1Metro << std::endl;
-                //setHeadPosition(0,15);
+                setHeadPosition(0,6);
                 //sleep(2);
               }
 

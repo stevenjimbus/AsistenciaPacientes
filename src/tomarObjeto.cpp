@@ -532,7 +532,7 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
         WristYaw(-90,1,90,1);
         sleep(2);
 
-        AvanzarHaciaElObjeto=0.78;0
+        AvanzarHaciaElObjeto=0.78;
     }
 
     if(MessageFromCallBack.compare("chocolate") == 0)
@@ -552,7 +552,7 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
         WristYaw(-90,1,90,1);
         sleep(2);
 
-        AvanzarHaciaElObjeto=0.78;       
+        AvanzarHaciaElObjeto=0.75;       
     }    
     
 
@@ -567,7 +567,7 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
     
     std::cout << "Distancia que avanza el robot: " << AvanzarHaciaElObjeto << std::endl;
     DesplazarBaseXYZ(AvanzarHaciaElObjeto,0,0); 
-    sleep(10);
+    sleep(5);
 
 
 
@@ -611,7 +611,7 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
         std::cout << "Correccion Angulo Imagen: " << CorreccionAnguloImage << std::endl;
         
         RotateBaseYPR(CorreccionAnguloImage,0,0);
-        sleep(3);
+        sleep(1);
 
         
         
@@ -619,23 +619,35 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
         if(MessageFromCallBack.compare("botella") == 0)
         {
           system("python /home/steven/importantPythonScripts/sujetarBotella.py");
-          sleep(2);
+          
           DesplazarBaseXYZ(-0.3,0,0);
-          sleep(4); 
+           
         }
 
         if(MessageFromCallBack.compare("cafe") == 0)
         {
+          system("python /home/steven/importantPythonScripts/sujetarCafe.py");
+          
+          DesplazarBaseXYZ(-0.3,0,0);
+          
            
         }
 
         if(MessageFromCallBack.compare("palomitas") == 0)
         {
+          system("python /home/steven/importantPythonScripts/sujetarPalomitas.py");
+          
+          DesplazarBaseXYZ(-0.3,0,0);
+          
            
         }
 
         if(MessageFromCallBack.compare("chocolate") == 0)
         {
+          system("python /home/steven/importantPythonScripts/sujetarChocolate.py");
+          
+          DesplazarBaseXYZ(-0.3,0,0);
+           
            
         }
 
