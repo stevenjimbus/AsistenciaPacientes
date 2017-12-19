@@ -620,7 +620,8 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
         {
           system("python /home/steven/importantPythonScripts/sujetarBotella.py");
           
-          DesplazarBaseXYZ(-0.3,0,0);
+          DesplazarBaseXYZ(-0.6,0,0);
+          sleep(2);
            
         }
 
@@ -628,7 +629,8 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
         {
           system("python /home/steven/importantPythonScripts/sujetarCafe.py");
           
-          DesplazarBaseXYZ(-0.3,0,0);
+          DesplazarBaseXYZ(-0.6,0,0);
+          sleep(2);
           
            
         }
@@ -637,7 +639,8 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
         {
           system("python /home/steven/importantPythonScripts/sujetarPalomitas.py");
           
-          DesplazarBaseXYZ(-0.3,0,0);
+          DesplazarBaseXYZ(-0.6,0,0);
+          sleep(2);
           
            
         }
@@ -646,7 +649,8 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
         {
           system("python /home/steven/importantPythonScripts/sujetarChocolate.py");
           
-          DesplazarBaseXYZ(-0.3,0,0);
+          DesplazarBaseXYZ(-0.6,0,0);
+          sleep(2);
            
            
         }

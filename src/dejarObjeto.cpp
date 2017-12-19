@@ -526,7 +526,7 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
     {
       ShoulderPitch(-10,1,-10,1);
       sleep(2);
-      AvanzarHaciaElObjeto=0.3;
+      AvanzarHaciaElObjeto=0.4;
        
     }      
 
@@ -622,9 +622,9 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
         {
           ShoulderPitch(5,1,5,1);
           sleep(2);
-          ElbowRoll(-35,0.9,35,0.9);
+          ElbowRoll(-10,0.9,10,0.9);
           sleep(2);          
-          DesplazarBaseXYZ(-0.3,0,0);
+          DesplazarBaseXYZ(-0.6,0,0);
           sleep(4);
           system("python /home/steven/importantPythonScripts/restPose.py"); 
           

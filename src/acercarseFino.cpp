@@ -455,12 +455,16 @@ void callBack(const std_msgs::String::ConstPtr& messageObject)
                     }   
                   }
                 }
+
+                //setHeadPosition(0,7);
                 std::cout << "Barrera limite virtual" << DistanciaMinima << std::endl;
 
                 rcnn_live_detector::msgTomarObjeto msg;
                 msg.objeto = MessageFromCallBack;
                 msg.topevirtual = DistanciaMinima;
                 goGetTheObject.publish(msg);
+
+
                 
 
                 
@@ -468,7 +472,7 @@ void callBack(const std_msgs::String::ConstPtr& messageObject)
                 
                 flagMenorA1Metro = false;
                 std::cout <<"++++++Termina Acercarse Fino, cambia a " << flagMenorA1Metro << std::endl;
-                setHeadPosition(0,6);
+                
                 //sleep(2);
               }
 

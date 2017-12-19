@@ -213,7 +213,7 @@ void callBack(const std_msgs::String::ConstPtr& messageObject)
     std::cout << "********************************************!"<< std::endl;
     float anguloYawHead = 22*parametroHead;// -110 a 110 con un paso de 22 grados
     
-    setHeadPosition(anguloYawHead,9);
+    setHeadPosition(anguloYawHead,12);
     if (parametroHead == -5){
       if (parametroBase > 0){
         sleep(7);
@@ -337,7 +337,7 @@ void callBack(const std_msgs::String::ConstPtr& messageObject)
 
 
           RotateBaseYPR(alinearTorsoAnguloYaw, pitchTorsoInicial, rollTorsoInicial);
-          setHeadPosition(0,0);
+          setHeadPosition(0,6);
           sleep(5);
           CorreccionCVimagePuntero = punteroImagenRGB();
           cv_bridge::CvImageConstPtr CorreccionCVimageBridge = cv_bridge::toCvShare(CorreccionCVimagePuntero, sensor_msgs::image_encodings::BGR8);
