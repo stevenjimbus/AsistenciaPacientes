@@ -477,28 +477,82 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
     AvanzarHaciaElObjeto=0.78;
     if(MessageFromCallBack.compare("botella") == 0)
     {
-        ShoulderPitch(0,1,0,1);
+        ShoulderPitch(10,1,10,1);
+        sleep(4);
+
+        ElbowRoll(-60,1,60,1);
         sleep(3);
-        ElbowYaw(-10,1,10,1);
+
+        ShoulderRoll(40,1,-40,1);
         sleep(3);
+
+        ElbowYaw(0,1,0,1);
+        sleep(3);
+
         WristYaw(-90,1,90,1);
-        sleep(3);
-        AvanzarHaciaElObjeto=0.77;
+        sleep(2);
+
+        AvanzarHaciaElObjeto=0.78;
     }
 
     if(MessageFromCallBack.compare("cafe") == 0)
     {
-       
+        ShoulderPitch(10,1,10,1);
+        sleep(4);
+
+        ElbowRoll(-60,1,60,1);
+        sleep(3);
+
+        ShoulderRoll(40,1,-40,1);
+        sleep(3);
+
+        ElbowYaw(0,1,0,1);
+        sleep(3);
+
+        WristYaw(-90,1,90,1);
+        sleep(2);
+
+        AvanzarHaciaElObjeto=0.78;       
     }
 
     if(MessageFromCallBack.compare("palomitas") == 0)
     {
-       
+        ShoulderPitch(10,1,10,1);
+        sleep(4);
+
+        ElbowRoll(-60,1,60,1);
+        sleep(3);
+
+        ShoulderRoll(40,1,-40,1);
+        sleep(3);
+
+        ElbowYaw(0,1,0,1);
+        sleep(3);
+
+        WristYaw(-90,1,90,1);
+        sleep(2);
+
+        AvanzarHaciaElObjeto=0.78;0
     }
 
     if(MessageFromCallBack.compare("chocolate") == 0)
     {
-       
+        ShoulderPitch(10,1,10,1);
+        sleep(4);
+
+        ElbowRoll(-60,1,60,1);
+        sleep(3);
+
+        ShoulderRoll(40,1,-40,1);
+        sleep(3);
+
+        ElbowYaw(0,1,0,1);
+        sleep(3);
+
+        WristYaw(-90,1,90,1);
+        sleep(2);
+
+        AvanzarHaciaElObjeto=0.78;       
     }    
     
 
@@ -513,7 +567,7 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
     
     std::cout << "Distancia que avanza el robot: " << AvanzarHaciaElObjeto << std::endl;
     DesplazarBaseXYZ(AvanzarHaciaElObjeto,0,0); 
-    sleep(3);
+    sleep(10);
 
 
 
@@ -564,17 +618,10 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
 
         if(MessageFromCallBack.compare("botella") == 0)
         {
-          ShoulderRoll(2,0.7,-2,0.7);
-          sleep(2);
-          ElbowRoll(-44,0.7,44,0.7);
-          sleep(2);
-          ShoulderPitch(-10,1,-10,1);
+          system("python /home/steven/importantPythonScripts/sujetarBotella.py");
           sleep(2);
           DesplazarBaseXYZ(-0.3,0,0);
           sleep(4); 
-          ShoulderPitch(20,1,20,1);
-          sleep(2);
-
         }
 
         if(MessageFromCallBack.compare("cafe") == 0)

@@ -488,16 +488,37 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
 
     if(MessageFromCallBack.compare("cafe") == 0)
     {
+        ShoulderPitch(0,1,0,1);
+        sleep(3);
+        ElbowYaw(-10,1,10,1);
+        sleep(3);
+        WristYaw(-90,1,90,1);
+        sleep(3);
+        AvanzarHaciaElObjeto=0.77;
        
     }
 
     if(MessageFromCallBack.compare("palomitas") == 0)
     {
+        ShoulderPitch(0,1,0,1);
+        sleep(3);
+        ElbowYaw(-10,1,10,1);
+        sleep(3);
+        WristYaw(-90,1,90,1);
+        sleep(3);
+        AvanzarHaciaElObjeto=0.77;
        
     }
 
     if(MessageFromCallBack.compare("chocolate") == 0)
     {
+        ShoulderPitch(0,1,0,1);
+        sleep(3);
+        ElbowYaw(-10,1,10,1);
+        sleep(3);
+        WristYaw(-90,1,90,1);
+        sleep(3);
+        AvanzarHaciaElObjeto=0.77;
        
     }
 

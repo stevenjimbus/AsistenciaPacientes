@@ -215,7 +215,12 @@ void callBack(const std_msgs::String::ConstPtr& messageObject)
     
     setHeadPosition(anguloYawHead,9);
     if (parametroHead == -5){
-      sleep(7);
+      if (parametroBase > 0){
+        sleep(7);
+      }
+      else{
+        sleep(3);
+      }
     }
     else{
       sleep(1.2);

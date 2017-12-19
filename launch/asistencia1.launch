@@ -7,18 +7,18 @@
 
 
 
-  <!-- call classifier server to jackson -->
-  <node pkg="rcnn_live_detector" type="classifier_jackson.py" name="classifier_jackson" output="screen" launch-prefix="xterm -e">
+  <!-- call classifier server to jackson  launch-prefix="xterm -e"-->
+  <node pkg="rcnn_live_detector" type="classifier_jackson.py" name="classifier_jackson" output="screen">
   </node>
 
 
   <!-- Calculo profundidad server -->
-  <node pkg="rcnn_live_detector" type="servicioprofundidadProjectPanda" name="servicioprofundidadProjectPanda" output="screen" launch-prefix="xterm -e">
+  <node pkg="rcnn_live_detector" type="servicioprofundidadProjectPanda" name="servicioprofundidadProjectPanda" output="screen">
   </node>
 
 
   <!-- Deteccion QR code server -->
-  <node pkg="rcnn_live_detector" type="qr_SERVICE" name="qr_SERVICE" output="screen" launch-prefix="xterm -e">
+  <node pkg="rcnn_live_detector" type="qr_SERVICE" name="qr_SERVICE" output="screen">
   </node>
    
 
