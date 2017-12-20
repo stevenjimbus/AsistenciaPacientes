@@ -1,6 +1,10 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+ 
+import unicodedata
 import rospy
 from std_msgs.msg import String
+import unidecode
 
 import speech_recognition as sr
 import os
@@ -26,7 +30,7 @@ def talker():
                     print("*********************")
 		    r = sr.Recognizer()
 		    with sr.Microphone() as source:
-		        print("Decir trigger 'okay panda' ")
+		        print("Decir trigger 'okay pepper' ")
 		        audio = r.listen(source)
 
 		    try:
@@ -41,7 +45,7 @@ def talker():
 		        	#rospy.on_shutdown(myhook)
 
 
-		        if respuesta_google_online == "okay panda":
+		        if respuesta_google_online == "okay paper":
 		            print("Trigger reconocido")
 		            #playsound('sample1.mp3')
 		            #print("acabar")
@@ -56,15 +60,20 @@ def talker():
 		            	respuesta_google_cloud=r.recognize_google_cloud(audio2, credentials_json=GOOGLE_CLOUD_SPEECH_CREDENTIALS,language="es-CR")
 		            	respuesta_google_cloud=respuesta_google_cloud.encode('utf-8')
 		            	print("Google Cloud Speech thinks you said " + respuesta_google_cloud)
+		            	
 		            	listapalabras = respuesta_google_cloud.split()
+		            	palabraDECO = unicodedata.normalize('NFKD', listapalabras[1].decode('unicode-escape')).encode('ASCII', 'ignore')
+		            	print "Palabra deco:" + palabraDECO
 		            	if len(listapalabras)==2:
 		            		if listapalabras[0]=="traer":
 		            			if listapalabras[1]=="botella":
 			            			pub.publish(listapalabras[1])
-			            		elif listapalabras[1]=="caja":
+			            		elif palabraDECO=="cafA":
+			            			pub.publish("cafe")
+			            		elif listapalabras[1]=="palomitas":
 			            			pub.publish(listapalabras[1])
-			            		elif listapalabras[1]=="cilindro":
-			            			pub.publish(listapalabras[1])
+			            		elif listapalabras[1]=="chocolate":
+			            			pub.publish(listapalabras[1])	
 			            		else:
 			            			print("objeto no disponible")
 
@@ -81,7 +90,7 @@ def talker():
 		            except sr.RequestError as e:
 		                print("Could not request results from Google Cloud Speech service; {0}".format(e))	            
 		        else:
-		            print("No coincide el trigger 'okay panda', usted dijo "+ respuesta_google_online)
+		            print("No coincide el trigger 'okay pepper', usted dijo "+ respuesta_google_online)
 
 		        
 		        

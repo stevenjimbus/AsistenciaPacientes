@@ -59,6 +59,8 @@ ros::Subscriber speechObject_sub;
 ros::ServiceClient clienteClasificacion;
 ros::ServiceClient clienteProfundidad;
 
+ros::Publisher SpeechPepper_pub;
+
 //const std::string RECEIVE_RGB_DEPTH_TOPIC_NAME = "/cv_camera/image_raw_th";
 const std::string RECEIVE_RGB_DEPTH_TOPIC_NAME = "/speechObject_sub_topic";//"/rgb/rect_out";
 
@@ -177,10 +179,19 @@ void RotateBaseYPR(float yaw, float pitch, float roll){
 //void callBack(const rcnn_live_detector::paquete_imagenes input_package)
 void callBack(const std_msgs::String::ConstPtr& messageObject)
 {
+
   //system("rm /home/steven/Desktop/debug/primeraparte/*");
   system("rm /home/steven/Desktop/debug/*");
   system("python /home/steven/importantPythonScripts/deactivateReflexes.py");
   std::string MessageFromCallBack = messageObject->data.c_str();
+
+  std_msgs::String msg;
+  std::stringstream ss;
+  ss << "Buscando " <<MessageFromCallBack;
+  msg.data = ss.str();
+  SpeechPepper_pub.publish(msg);
+
+
   sensor_msgs::ImagePtr in_image_RGB;
   sensor_msgs::ImagePtr CorreccionCVimagePuntero;
   nav_msgs::Odometry OdometriaPepper;
@@ -436,6 +447,8 @@ int main(int argc, char **argv)
 
   //publicar el objeto reconocido
   DetectedObject_pub = nh_ptr_->advertise<std_msgs::String>("DetectedObject", 1);
+
+  SpeechPepper_pub = nh_ptr_->advertise<std_msgs::String>("/speech", 1);
 
   
 

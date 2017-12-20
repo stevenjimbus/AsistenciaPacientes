@@ -478,85 +478,26 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
     AvanzarHaciaElObjeto=0.78;
     if(MessageFromCallBack.compare("botella") == 0)
     {
-        ShoulderPitch(10,1,10,1);
-        sleep(4);
-
-        ElbowRoll(-60,1,60,1);
-        sleep(3);
-
-        ShoulderRoll(40,1,-40,1);
-        sleep(3);
-
-        ElbowYaw(0,1,0,1);
-        sleep(3);
-
-        WristYaw(-90,1,90,1);
-        sleep(2);
-
+        system("python /home/steven/importantPythonScripts/prepararTomarBotella.py");
         AvanzarHaciaElObjeto=0.78;
     }
 
     if(MessageFromCallBack.compare("cafe") == 0)
     {
         system("python /home/steven/importantPythonScripts/prepararTomarCafe.py");
-        /*
-        ShoulderPitch(10,1,10,1);
-        sleep(4);
-
-        ElbowRoll(-60,1,60,1);
-        sleep(3);
-
-        ShoulderRoll(40,1,-40,1);
-        sleep(3);
-
-        ElbowYaw(0,1,0,1);
-        sleep(3);
-
-        WristYaw(-90,1,90,1);
-        sleep(2);
-        */
-
         AvanzarHaciaElObjeto=0.78;       
     }
 
     if(MessageFromCallBack.compare("palomitas") == 0)
     {
-        ShoulderPitch(10,1,10,1);
-        sleep(4);
-
-        ElbowRoll(-60,1,60,1);
-        sleep(3);
-
-        ShoulderRoll(40,1,-40,1);
-        sleep(3);
-
-        ElbowYaw(0,1,0,1);
-        sleep(3);
-
-        WristYaw(-90,1,90,1);
-        sleep(2);
-
+        system("python /home/steven/importantPythonScripts/prepararTomarPalomitas.py");
         AvanzarHaciaElObjeto=0.78;
     }
 
     if(MessageFromCallBack.compare("chocolate") == 0)
     {
-        ShoulderPitch(10,1,10,1);
-        sleep(4);
-
-        ElbowRoll(-60,1,60,1);
-        sleep(3);
-
-        ShoulderRoll(40,1,-40,1);
-        sleep(3);
-
-        ElbowYaw(0,1,0,1);
-        sleep(3);
-
-        WristYaw(-90,1,90,1);
-        sleep(2);
-
-        AvanzarHaciaElObjeto=0.75;       
+        system("python /home/steven/importantPythonScripts/prepararTomarChocolate.py");
+        AvanzarHaciaElObjeto=0.8;       
     }    
     
 
@@ -622,16 +563,17 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
 
         if(MessageFromCallBack.compare("botella") == 0)
         {
+          std::cout << "Agarrando El objeto" << std::endl;
           system("python /home/steven/importantPythonScripts/sujetarBotella.py");
+          std::cout << "Terminar Agarrando El objeto" << std::endl;
+          sleep(3);
+                   
+          DesplazarBaseXYZ(-1,0,0);
+          sleep(2);
 
-          ShoulderPitch(-10,1,-10,1);
-          sleep(5);
+          ShoulderPitch(30,1,30,1);
+          sleep(2);
           
-          DesplazarBaseXYZ(-0.6,0,0);
-          sleep(2);
-
-          ShoulderPitch(10,1,10,1);
-          sleep(2);
            
         }
 
@@ -640,16 +582,9 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
           std::cout << "Agarrando El objeto" << std::endl;
           system("python /home/steven/importantPythonScripts/sujetarCafe.py");
           std::cout << "Terminar Agarrando El objeto" << std::endl;
-          sleep(10);
-
-          /*          
-          ShoulderPitch(-10,1,-10,1);
-          sleep(5);
-          */
-
-
-          
-          DesplazarBaseXYZ(-0.6,0,0);
+          sleep(3);
+                   
+          DesplazarBaseXYZ(-1,0,0);
           sleep(2);
 
           ShoulderPitch(30,1,30,1);
@@ -660,32 +595,34 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
 
         if(MessageFromCallBack.compare("palomitas") == 0)
         {
+          std::cout << "Agarrando El objeto" << std::endl;
           system("python /home/steven/importantPythonScripts/sujetarPalomitas.py");
-          
-          ShoulderPitch(-10,1,-10,1);
-          sleep(5);
-          
-          DesplazarBaseXYZ(-0.6,0,0);
+          std::cout << "Terminar Agarrando El objeto" << std::endl;
+          sleep(3);
+                   
+          DesplazarBaseXYZ(-1,0,0);
           sleep(2);
 
-          ShoulderPitch(10,1,10,1);
+          ShoulderPitch(30,1,30,1);
           sleep(2);
+          
           
            
         }
 
         if(MessageFromCallBack.compare("chocolate") == 0)
         {
+          std::cout << "Agarrando El objeto" << std::endl;
           system("python /home/steven/importantPythonScripts/sujetarChocolate.py");
-          
-          ShoulderPitch(-10,1,-10,1);
-          sleep(5);
-          
-          DesplazarBaseXYZ(-1.3,0,0);
+          std::cout << "Terminar Agarrando El objeto" << std::endl;
+          sleep(3);
+                   
+          DesplazarBaseXYZ(-1,0,0);
           sleep(2);
 
           ShoulderPitch(30,1,30,1);
           sleep(2);
+          
            
            
         }

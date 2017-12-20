@@ -164,7 +164,7 @@ void ShoulderRoll(double var1, double var2, double var3, double var4)
   naoJointAngles.push_back(var2);
   naoJointAngles.push_back(degreesToRadians(var3));
   naoJointAngles.push_back(var4);
-  speed = 0.1;
+  speed = 0.5;
   rel = 0;
   msg.joint_names = naoJointNames;
   msg.joint_angles = naoJointAngles;  // float [] -In Radians (must be array)
@@ -481,7 +481,7 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
     {
       ShoulderPitch(-10,1,-10,1);
       sleep(2);
-      AvanzarHaciaElObjeto=0.5;       
+      AvanzarHaciaElObjeto=0.55;       
     }         
     
     if(AvanzarHaciaElObjeto > TopeVirtual)
@@ -538,42 +538,22 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
         RotateBaseYPR(CorreccionAnguloImage,0,0);
         sleep(1);
 
-        int acorralarbotella [12] = {0.0659611,0.0368156,-0.078233,-0.569107,-1.33309,0.7,-0.0107379,-0.00920391,-0.185612,0.549165,1.63827,0.7};
-        //positionArms(acorralarbotella);
-
-        
         
 
-        if(MessageFromCallBack.compare("botella") == 0)
-        {
-          
-        }
-
-        if(MessageFromCallBack.compare("cafe") == 0)
-        {
-           
-        }
-
-        if(MessageFromCallBack.compare("palomitas") == 0)
-        {
-           
-        }
-
-        if(MessageFromCallBack.compare("chocolate") == 0)
-        {
-           
-        }
+        
         if(MessageFromCallBack.compare("QRcodeGOOD") == 0)
         {
           ShoulderPitch(5,1,5,1);
           sleep(2);
 
-          ShoulderRoll(40,1,-40,1);
+          ShoulderRoll(50,1,-50,1);
           sleep(6);
                    
           DesplazarBaseXYZ(-0.6,0,0);
           sleep(3);
           system("python /home/steven/importantPythonScripts/restPose.py"); 
+          
+          system("rostopic pub /speech std_msgs/String \"data: 'He terminado'\"");
           
         }  
 
