@@ -409,6 +409,7 @@ void DesplazarBaseXYZ(float X, float Y, float Z)
 
 void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
 {
+  std::cout <<"****Estoy en Tomar objeto***" << std::endl;
   
   int contadorImagenes;
   contadorImagenes = 0;
@@ -497,6 +498,8 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
 
     if(MessageFromCallBack.compare("cafe") == 0)
     {
+        system("python /home/steven/importantPythonScripts/prepararTomarCafe.py");
+        /*
         ShoulderPitch(10,1,10,1);
         sleep(4);
 
@@ -511,6 +514,7 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
 
         WristYaw(-90,1,90,1);
         sleep(2);
+        */
 
         AvanzarHaciaElObjeto=0.78;       
     }
@@ -633,15 +637,22 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
 
         if(MessageFromCallBack.compare("cafe") == 0)
         {
+          std::cout << "Agarrando El objeto" << std::endl;
           system("python /home/steven/importantPythonScripts/sujetarCafe.py");
-          
+          std::cout << "Terminar Agarrando El objeto" << std::endl;
+          sleep(10);
+
+          /*          
           ShoulderPitch(-10,1,-10,1);
           sleep(5);
+          */
+
+
           
           DesplazarBaseXYZ(-0.6,0,0);
           sleep(2);
 
-          ShoulderPitch(10,1,10,1);
+          ShoulderPitch(30,1,30,1);
           sleep(2);
           
            
@@ -670,10 +681,10 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
           ShoulderPitch(-10,1,-10,1);
           sleep(5);
           
-          DesplazarBaseXYZ(-0.6,0,0);
+          DesplazarBaseXYZ(-1.3,0,0);
           sleep(2);
 
-          ShoulderPitch(10,1,10,1);
+          ShoulderPitch(30,1,30,1);
           sleep(2);
            
            
@@ -683,18 +694,20 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
         std::stringstream ss;
         ss << "QRcodeGOOD";
         msg.data = ss.str(); 
+
         MapForQRcode_pub.publish(msg);
+        std::cout << "Ya se ha publicado QRcodeGOOD al  otro nodo" << std::endl;
 
         
 
         CorreccionCVimagePuntero = punteroImagenRGB();
         cv_bridge::CvImageConstPtr CorreccionCVimageBridge = cv_bridge::toCvShare(CorreccionCVimagePuntero, sensor_msgs::image_encodings::BGR8);
         cv::Mat CorreccionCVimageMat = CorreccionCVimageBridge->image;
-        snprintf(pathacercarseFinoDetectedBBOX, 512, "/home/steven/Desktop/debug/TomarObjetoDetectedBBOX%03d.jpg", contadorImagenes); 
+        snprintf(pathacercarseFinoDetectedBBOX, 512, "/home/steven/Desktop/debug/primeraparte/TomarObjetoDetectedBBOX%03d.jpg", contadorImagenes); 
         cv::imwrite(pathacercarseFinoDetectedBBOX, CorreccionCVimageMat);
 
-        cv::line(CorreccionCVimageMat, cv::Point(160,5), cv::Point(160,315), cv::Scalar(0,0,255), 1, 8);
-        snprintf(pathacercarseFinoDrawCenteredLine, 512, "/home/steven/Desktop/debug/TomarObjetoDrawCenteredLine%03d.jpg", contadorImagenes); 
+        cv::line(CorreccionCVimageMat, cv::Point(360,5), cv::Point(360,315), cv::Scalar(0,0,255), 1, 8);
+        snprintf(pathacercarseFinoDrawCenteredLine, 512, "/home/steven/Desktop/debug/primeraparte/TomarObjetoDrawCenteredLine%03d.jpg", contadorImagenes); 
         cv::imwrite(pathacercarseFinoDrawCenteredLine, CorreccionCVimageMat);
 
           

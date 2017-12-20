@@ -409,6 +409,7 @@ void DesplazarBaseXYZ(float X, float Y, float Z)
 
 void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
 {
+  std::cout <<"****Estoy en Dejar objeto***" << std::endl;
   
   int contadorImagenes;
   contadorImagenes = 0;
@@ -424,12 +425,12 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
   cv::Mat CroppedImageDepth;
   cv::Mat CroppedImageRGB;
 
-  char pathacercarseFinoInicio[512];
-  char pathacercarseFinoDEPTH[512];
-  char pathacercarseFinoDrawCenteredLine[512];
-  char pathacercarseFinoDetectedBBOX[512];
-  char pathCroppedImageDepth[512];
-  char pathCroppedImageRGB[512];
+  char QRpathacercarseFinoInicio[512];
+  char QRpathacercarseFinoDEPTH[512];
+  char QRpathacercarseFinoDrawCenteredLine[512];
+  char QRpathacercarseFinoDetectedBBOX[512];
+  char QRpathCroppedImageDepth[512];
+  char QRpathCroppedImageRGB[512];
   std::string MessageFromCallBack = ReceivedMessage.objeto;
   double TopeVirtual = ReceivedMessage.topevirtual;
 
@@ -475,69 +476,13 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
 
 
     AvanzarHaciaElObjeto=0.6;
-    if(MessageFromCallBack.compare("botella") == 0)
-    {
-        ShoulderPitch(0,1,0,1);
-        sleep(3);
-        ElbowYaw(-10,1,10,1);
-        sleep(3);
-        WristYaw(-90,1,90,1);
-        sleep(3);
-        AvanzarHaciaElObjeto=0.77;
-    }
-
-    if(MessageFromCallBack.compare("cafe") == 0)
-    {
-        ShoulderPitch(0,1,0,1);
-        sleep(3);
-        ElbowYaw(-10,1,10,1);
-        sleep(3);
-        WristYaw(-90,1,90,1);
-        sleep(3);
-        AvanzarHaciaElObjeto=0.77;
-       
-    }
-
-    if(MessageFromCallBack.compare("palomitas") == 0)
-    {
-        ShoulderPitch(0,1,0,1);
-        sleep(3);
-        ElbowYaw(-10,1,10,1);
-        sleep(3);
-        WristYaw(-90,1,90,1);
-        sleep(3);
-        AvanzarHaciaElObjeto=0.77;
-       
-    }
-
-    if(MessageFromCallBack.compare("chocolate") == 0)
-    {
-        ShoulderPitch(0,1,0,1);
-        sleep(3);
-        ElbowYaw(-10,1,10,1);
-        sleep(3);
-        WristYaw(-90,1,90,1);
-        sleep(3);
-        AvanzarHaciaElObjeto=0.77;
-       
-    }
 
     if(MessageFromCallBack.compare("QRcodeGOOD") == 0)
     {
       ShoulderPitch(-10,1,-10,1);
       sleep(2);
-      AvanzarHaciaElObjeto=0.4;
-       
-    }      
-
-
-    
-    
-
-
-
-
-   
+      AvanzarHaciaElObjeto=0.5;       
+    }         
     
     if(AvanzarHaciaElObjeto > TopeVirtual)
     {
@@ -547,7 +492,7 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
     
     std::cout << "Distancia que avanza el robot: " << AvanzarHaciaElObjeto << std::endl;
     DesplazarBaseXYZ(AvanzarHaciaElObjeto,0,0); 
-    sleep(2);
+    sleep(4);
 
 
 
@@ -622,9 +567,12 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
         {
           ShoulderPitch(5,1,5,1);
           sleep(2);
+
+          ShoulderRoll(40,1,-40,1);
+          sleep(6);
                    
           DesplazarBaseXYZ(-0.6,0,0);
-          sleep(2);
+          sleep(3);
           system("python /home/steven/importantPythonScripts/restPose.py"); 
           
         }  
@@ -634,12 +582,12 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
         CorreccionCVimagePuntero = punteroImagenRGB();
         cv_bridge::CvImageConstPtr CorreccionCVimageBridge = cv_bridge::toCvShare(CorreccionCVimagePuntero, sensor_msgs::image_encodings::BGR8);
         cv::Mat CorreccionCVimageMat = CorreccionCVimageBridge->image;
-        snprintf(pathacercarseFinoDetectedBBOX, 512, "/home/steven/Desktop/debug/TomarObjetoDetectedBBOX%03d.jpg", contadorImagenes); 
-        cv::imwrite(pathacercarseFinoDetectedBBOX, CorreccionCVimageMat);
+        snprintf(QRpathacercarseFinoDetectedBBOX, 512, "/home/steven/Desktop/debug/QRTomarObjetoDetectedBBOX%03d.jpg", contadorImagenes); 
+        cv::imwrite(QRpathacercarseFinoDetectedBBOX, CorreccionCVimageMat);
 
-        cv::line(CorreccionCVimageMat, cv::Point(160,5), cv::Point(160,315), cv::Scalar(0,0,255), 1, 8);
-        snprintf(pathacercarseFinoDrawCenteredLine, 512, "/home/steven/Desktop/debug/TomarObjetoDrawCenteredLine%03d.jpg", contadorImagenes); 
-        cv::imwrite(pathacercarseFinoDrawCenteredLine, CorreccionCVimageMat);
+        cv::line(CorreccionCVimageMat, cv::Point(320,5), cv::Point(320,315), cv::Scalar(0,0,255), 1, 8);
+        snprintf(QRpathacercarseFinoDrawCenteredLine, 512, "/home/steven/Desktop/debug/QRTomarObjetoDrawCenteredLine%03d.jpg", contadorImagenes); 
+        cv::imwrite(QRpathacercarseFinoDrawCenteredLine, CorreccionCVimageMat);
 
           
 

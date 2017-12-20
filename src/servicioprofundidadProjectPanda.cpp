@@ -37,6 +37,7 @@ boost::shared_ptr<ros::NodeHandle> nh_ptr_;
 bool calcularProfundidad(rcnn_live_detector::projectPandaProfundidadServer::Request &req,
              rcnn_live_detector::projectPandaProfundidadServer::Response &res)
 {
+  std::cout << "*******Llamado a Servicio de Profundidad" << std::endl;
   sensor_msgs::Image imageFromRequest;
   imageFromRequest = req.image;
   cv_bridge::CvImagePtr depth = cv_bridge::toCvCopy(imageFromRequest , sensor_msgs::image_encodings::TYPE_32FC1);

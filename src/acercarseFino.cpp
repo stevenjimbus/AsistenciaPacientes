@@ -252,25 +252,25 @@ void callBack(const std_msgs::String::ConstPtr& messageObject)
   while(flagMenorA1Metro)
   {
     contadorImagenes++;
-    std::cout <<"***********************************************" <<std::endl;
-    std::cout <<"***********************************************" <<std::endl;
-    std::cout <<"***********************************************" <<std::endl;
+    //std::cout <<"***********************************************" <<std::endl;
+    std::cout <<"*****Estoy en acercamientoFino*****************" <<std::endl;
+    //std::cout <<"***********************************************" <<std::endl;
     
 
-    std::cout <<"************ FLAG DEBUG 0 ***************" <<std::endl;
-    snprintf(pathacercarseFinoInicio, 512, "/home/steven/Desktop/debug/acercarseFinoInicio%03d.jpg", contadorImagenes);    
+    //std::cout <<"************ FLAG DEBUG/primeraparte 0 ***************" <<std::endl;
+    snprintf(pathacercarseFinoInicio, 512, "/home/steven/Desktop/debug/primeraparte/acercarseFinoInicio%03d.jpg", contadorImagenes);    
     cv::Mat imageRGBCV = takeImageRGBandSave()->image;
     cv::imwrite(pathacercarseFinoInicio , imageRGBCV);
 
-    std::cout <<"************ FLAG DEBUG 1 ***************" <<std::endl;
+   // std::cout <<"************ FLAG DEBUG/primeraparte 1 ***************" <<std::endl;
 
     
     /*  
-    std::cout <<"************ FLAG DEBUG 1.0 ***************" <<std::endl;
-    snprintf(pathacercarseFinoDEPTH, 512, "/home/steven/Desktop/debug/acercarseFinoDEPTH%03d.jpg", contadorImagenes); 
-    std::cout <<"************ FLAG DEBUG 1.1 ***************" <<std::endl;
+    std::cout <<"************ FLAG DEBUG/primeraparte 1.0 ***************" <<std::endl;
+    snprintf(pathacercarseFinoDEPTH, 512, "/home/steven/Desktop/debug/primeraparte/acercarseFinoDEPTH%03d.jpg", contadorImagenes); 
+    std::cout <<"************ FLAG DEBUG/primeraparte 1.1 ***************" <<std::endl;
     cv::Mat imageDEPTHCV = takeImageDEPTHandSave()->image;
-    std::cout <<"************ FLAG DEBUG 1.2 ***************" <<std::endl;
+    std::cout <<"************ FLAG DEBUG/primeraparte 1.2 ***************" <<std::endl;
     cv::Mat TemporaryImageForSaving;
     cv::Mat Result;
     
@@ -279,9 +279,9 @@ void callBack(const std_msgs::String::ConstPtr& messageObject)
     cv::cvtColor(TemporaryImageForSaving, Result, CV_GRAY2BGR);
     cv::imwrite( pathacercarseFinoDEPTH, Result);    
     //cv::imwrite( pathacercarseFinoDEPTH, imageDEPTHCV);
-    std::cout <<"************ FLAG DEBUG 1.3 ***************" <<std::endl;
+    std::cout <<"************ FLAG DEBUG/primeraparte 1.3 ***************" <<std::endl;
 
-    std::cout <<"************ FLAG DEBUG 2 ***************" <<std::endl;
+    std::cout <<"************ FLAG DEBUG/primeraparte 2 ***************" <<std::endl;
     */
 
 
@@ -290,10 +290,10 @@ void callBack(const std_msgs::String::ConstPtr& messageObject)
 
     in_image_RGB   = punteroImagenRGB();
 
-    std::cout <<"************ FLAG DEBUG 3 ***************" <<std::endl;
+    //std::cout <<"************ FLAG DEBUG/primeraparte 3 ***************" <<std::endl;
     in_image_DEPTH = punteroImagenDEPTH();
 
-    std::cout <<"************ FLAG DEBUG 4 ***************" <<std::endl;
+    //std::cout <<"************ FLAG DEBUG/primeraparte 4 ***************" <<std::endl;
     
     
 
@@ -353,7 +353,7 @@ void callBack(const std_msgs::String::ConstPtr& messageObject)
             << "Y2: " << bbox.at(3) << std::endl;
          cv::rectangle(imageCV, cv::Point(bbox.at(0), bbox.at(1)), cv::Point(bbox.at(2), bbox.at(3)), cv::Scalar(0,0,255), 1, 8);
 
-         snprintf(pathacercarseFinoDetectedBBOX, 512, "/home/steven/Desktop/debug/acercarseFinoDetectedBBOX%03d.jpg", contadorImagenes); 
+         snprintf(pathacercarseFinoDetectedBBOX, 512, "/home/steven/Desktop/debug/primeraparte/acercarseFinoDetectedBBOX%03d.jpg", contadorImagenes); 
          cv::imwrite(pathacercarseFinoDetectedBBOX, imageCV);
          std::vector<double> bboxOfObjectDetected;
          bboxOfObjectDetected.push_back(bbox.at(0)/2);
@@ -377,7 +377,7 @@ void callBack(const std_msgs::String::ConstPtr& messageObject)
 
 
           CroppedImageRGB=imageRGBCV(mirectangulo);
-          snprintf(pathCroppedImageRGB, 512, "/home/steven/Desktop/debug/CroppedImageRGB%03d.jpg", contadorImagenes); 
+          snprintf(pathCroppedImageRGB, 512, "/home/steven/Desktop/debug/primeraparte/CroppedImageRGB%03d.jpg", contadorImagenes); 
           cv::imwrite(pathCroppedImageRGB, CroppedImageRGB);
 
 
@@ -398,10 +398,10 @@ void callBack(const std_msgs::String::ConstPtr& messageObject)
           CorreccionCVimagePuntero = punteroImagenRGB();
           cv_bridge::CvImageConstPtr CorreccionCVimageBridge = cv_bridge::toCvShare(CorreccionCVimagePuntero, sensor_msgs::image_encodings::BGR8);
           cv::Mat CorreccionCVimageMat = CorreccionCVimageBridge->image;
-          cv::line(CorreccionCVimageMat, cv::Point(160,5), cv::Point(160,315), cv::Scalar(0,0,255), 1, 8);
+          cv::line(CorreccionCVimageMat, cv::Point(320,5), cv::Point(320,315), cv::Scalar(0,0,255), 1, 8);
 
 
-          snprintf(pathacercarseFinoDrawCenteredLine, 512, "/home/steven/Desktop/debug/acercarseFinoDrawCenteredLine%03d.jpg", contadorImagenes); 
+          snprintf(pathacercarseFinoDrawCenteredLine, 512, "/home/steven/Desktop/debug/primeraparte/acercarseFinoDrawCenteredLine%03d.jpg", contadorImagenes); 
           cv::imwrite(pathacercarseFinoDrawCenteredLine, CorreccionCVimageMat); 
 
           

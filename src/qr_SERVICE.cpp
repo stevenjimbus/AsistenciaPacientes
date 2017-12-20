@@ -80,6 +80,7 @@ cv_bridge::CvImageConstPtr takeImageRGBandSave(){
 bool SearchQR (rcnn_live_detector::imageTagger::Request &req,
              rcnn_live_detector::imageTagger::Response &res)
 {
+	std::cout << "********Servicio Detect QR code*************" << std::endl;
 	sensor_msgs::Image imageFromRequest;
 	imageFromRequest = req.image;
 	cv_bridge::CvImagePtr Input = cv_bridge::toCvCopy(imageFromRequest , sensor_msgs::image_encodings::BGR8);

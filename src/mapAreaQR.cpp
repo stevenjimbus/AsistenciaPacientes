@@ -187,9 +187,9 @@ void callBack(const std_msgs::String::ConstPtr& messageObject)
   int contadorImagenes;
   contadorImagenes = 0;
 
-  char pathmapAreaRGBinicio[512];
-  char pathmapAreaDrawCenteredLine[512];
-  char pathmapAreaDetectedBBOX[512];
+  char QRpathmapAreaRGBinicio[512];
+  char QRpathmapAreaDrawCenteredLine[512];
+  char QRpathmapAreaDetectedBBOX[512];
 
 
   
@@ -207,9 +207,15 @@ void callBack(const std_msgs::String::ConstPtr& messageObject)
 
 
   while(keepMapping) {
+    if(parametroHead > 5){
+      parametroBase++;
+      parametroHead=-5;
+      RotateBaseYPR(140,0,0);
+      sleep(1);
+      }
     contadorImagenes++;
     std::cout << "********************************************!"<< std::endl;
-    std::cout << "********************************************!"<< std::endl;
+    std::cout << "*******Estoy en mapAreaQR************!"<< std::endl;
     std::cout << "********************************************!"<< std::endl;
     float anguloYawHead = 22*parametroHead;// -110 a 110 con un paso de 22 grados
     
@@ -227,8 +233,8 @@ void callBack(const std_msgs::String::ConstPtr& messageObject)
     }
     ptrGuardarRGBInicio = takeImageRGBandSave();
     cv::Mat matrizRGBInicio =ptrGuardarRGBInicio->image;
-    snprintf(pathmapAreaRGBinicio, 512, "/home/steven/Desktop/debug/mapAreaRGBinicio%03d.jpg", contadorImagenes);       
-    cv::imwrite(pathmapAreaRGBinicio, matrizRGBInicio );
+    snprintf(QRpathmapAreaRGBinicio, 512, "/home/steven/Desktop/debug/QRmapAreaRGBinicio%03d.jpg", contadorImagenes);       
+    cv::imwrite(QRpathmapAreaRGBinicio, matrizRGBInicio );
 
     in_image_RGB   = punteroImagenRGB();//Tomar la imagen
     std::cout <<"@@@@@@@@@@@@FLAG-Image kaboom  @@@@@@@@@@@@@@" <<std::endl;
@@ -318,9 +324,15 @@ void callBack(const std_msgs::String::ConstPtr& messageObject)
 
 
 
-          double rollTorsoFinal=0;
-          double pitchTorsoFinal=0;
+          //double rollTorsoFinal=0;
+          //double pitchTorsoFinal=0;
+          double rollTorsoFinal=rollTorsoInicial;
+          double pitchTorsoFinal=pitchTorsoInicial;
+          std::cout << "yawTorsoInicial  :  " << yawTorsoInicial << std::endl;
+          std::cout << "anguloYawHead  :  " <<anguloYawHead  << std::endl;
+          std::cout << "CorreccionAnguloImage  :  " <<CorreccionAnguloImage  << std::endl;
           double yawTorsoFinal=yawTorsoInicial + anguloYawHead + CorreccionAnguloImage;
+          std::cout << "yawTorsoFinal  :  " <<yawTorsoFinal  << std::endl;
           std::cout << "rollTorsoFinal: " << rollTorsoFinal << ", pitchTorsoFinal: " << pitchTorsoFinal << ", yawTorsoFinal: " << yawTorsoFinal << std::endl;
           
 
@@ -336,19 +348,19 @@ void callBack(const std_msgs::String::ConstPtr& messageObject)
 
 
 
-          RotateBaseYPR(alinearTorsoAnguloYaw, pitchTorsoInicial, rollTorsoInicial);
+          RotateBaseYPR(alinearTorsoAnguloYaw, pitchTorsoFinal, rollTorsoFinal);
           setHeadPosition(0,0);
-          sleep(1);
+          sleep(3);
           CorreccionCVimagePuntero = punteroImagenRGB();
           cv_bridge::CvImageConstPtr CorreccionCVimageBridge = cv_bridge::toCvShare(CorreccionCVimagePuntero, sensor_msgs::image_encodings::BGR8);
           cv::Mat CorreccionCVimageMat = CorreccionCVimageBridge->image;
-          cv::line(CorreccionCVimageMat, cv::Point(160,5), cv::Point(160,315), cv::Scalar(0,0,255), 1, 8);
+          cv::line(CorreccionCVimageMat, cv::Point(320,5), cv::Point(320,315), cv::Scalar(0,0,255), 1, 8);
 
-          snprintf(pathmapAreaDetectedBBOX, 512, "/home/steven/Desktop/debug/mapAreaDetectedBBOX%03d.jpg", contadorImagenes);     
-          cv::imwrite( pathmapAreaDetectedBBOX, imageCV);
+          snprintf(QRpathmapAreaDetectedBBOX, 512, "/home/steven/Desktop/debug/QRmapAreaDetectedBBOX%03d.jpg", contadorImagenes);     
+          cv::imwrite( QRpathmapAreaDetectedBBOX, imageCV);
 
-          snprintf(pathmapAreaDrawCenteredLine, 512, "/home/steven/Desktop/debug/mapAreaDrawCenteredLine%03d.jpg", contadorImagenes);
-          cv::imwrite(pathmapAreaDrawCenteredLine, CorreccionCVimageMat);          
+          snprintf(QRpathmapAreaDrawCenteredLine, 512, "/home/steven/Desktop/debug/QRmapAreaDrawCenteredLine%03d.jpg", contadorImagenes);
+          cv::imwrite(QRpathmapAreaDrawCenteredLine, CorreccionCVimageMat);          
           DetectedObject_pub.publish(messageObject);
           keepMapping = false;
           };
@@ -373,13 +385,16 @@ void callBack(const std_msgs::String::ConstPtr& messageObject)
      }
 
      parametroHead++;
+     std::cout << "Parametro head" << parametroHead << std::endl;
 
+     /*
      if(parametroHead > 5){
       parametroBase++;
       parametroHead=-5;
-      RotateBaseYPR(90,0,0);
+      RotateBaseYPR(140,0,0);
       sleep(1);
       }
+      */
 
       if(parametroBase > 4){
         keepMapping = false;

@@ -47,7 +47,7 @@ def centinel_cb(req):
     global lista
 
 
-    print('~~~~~~~~~~~~~~~~Beggining of Tagging Procedure.~~~~~~~~~~~~~~~~~~~')
+    print('~~~~~~~~~~~~~~~Llamado a Jackson Clasificacion~~~~~~~~~~~~~~~~~~~')
     '''
     os.system('> /home/steven/CarpetaJSONcaffe/response.json')              
 

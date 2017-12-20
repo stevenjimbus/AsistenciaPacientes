@@ -177,6 +177,7 @@ void RotateBaseYPR(float yaw, float pitch, float roll){
 //void callBack(const rcnn_live_detector::paquete_imagenes input_package)
 void callBack(const std_msgs::String::ConstPtr& messageObject)
 {
+  //system("rm /home/steven/Desktop/debug/primeraparte/*");
   system("rm /home/steven/Desktop/debug/*");
   system("python /home/steven/importantPythonScripts/deactivateReflexes.py");
   std::string MessageFromCallBack = messageObject->data.c_str();
@@ -207,9 +208,15 @@ void callBack(const std_msgs::String::ConstPtr& messageObject)
 
 
   while(keepMapping) {
+    if(parametroHead > 5){
+      parametroBase++;
+      parametroHead=-5;
+      RotateBaseYPR(140,0,0);
+      sleep(1);
+    }
     contadorImagenes++;
     std::cout << "********************************************!"<< std::endl;
-    std::cout << "********************************************!"<< std::endl;
+    std::cout << "*********Estoy en MapArea*****************!"<< std::endl;
     std::cout << "********************************************!"<< std::endl;
     float anguloYawHead = 22*parametroHead;// -110 a 110 con un paso de 22 grados
     
@@ -227,7 +234,8 @@ void callBack(const std_msgs::String::ConstPtr& messageObject)
     }
     ptrGuardarRGBInicio = takeImageRGBandSave();
     cv::Mat matrizRGBInicio =ptrGuardarRGBInicio->image;
-    snprintf(pathmapAreaRGBinicio, 512, "/home/steven/Desktop/debug/mapAreaRGBinicio%03d.jpg", contadorImagenes);       
+    snprintf(pathmapAreaRGBinicio, 512, "/home/steven/Desktop/debug/primeraparte/mapAreaRGBinicio%03d.jpg", contadorImagenes); 
+    std::cout << "Doing imwrite en mapArea" << std::endl;      
     cv::imwrite(pathmapAreaRGBinicio, matrizRGBInicio );
 
     in_image_RGB   = punteroImagenRGB();//Tomar la imagen
@@ -286,7 +294,7 @@ void callBack(const std_msgs::String::ConstPtr& messageObject)
 
 
           //**********Obtener odometria de pepper**********************
-          OdometriaPepper= *(ros::topic::waitForMessage<nav_msgs::Odometry>("/naoqi_driver_node/odom", ros::Duration(1)));
+          OdometriaPepper= *(ros::topic::waitForMessage<nav_msgs::Odometry>("/naoqi_driver_node/odom", ros::Duration(5)));
           float quatX = OdometriaPepper.pose.pose.orientation.x;//orientacion X del torso de pepper
           float quatY = OdometriaPepper.pose.pose.orientation.y;//orientacion Y del torso de pepper
           float quatZ = OdometriaPepper.pose.pose.orientation.z;//orientacion Z del torso de pepper
@@ -318,8 +326,10 @@ void callBack(const std_msgs::String::ConstPtr& messageObject)
 
 
 
-          double rollTorsoFinal=0;
-          double pitchTorsoFinal=0;
+          //double rollTorsoFinal=0;
+          //double pitchTorsoFinal=0;
+          double rollTorsoFinal=rollTorsoInicial;
+          double pitchTorsoFinal=pitchTorsoInicial;
           double yawTorsoFinal=yawTorsoInicial + anguloYawHead + CorreccionAnguloImage;
           std::cout << "rollTorsoFinal: " << rollTorsoFinal << ", pitchTorsoFinal: " << pitchTorsoFinal << ", yawTorsoFinal: " << yawTorsoFinal << std::endl;
           
@@ -338,16 +348,16 @@ void callBack(const std_msgs::String::ConstPtr& messageObject)
 
           RotateBaseYPR(alinearTorsoAnguloYaw, pitchTorsoInicial, rollTorsoInicial);
           setHeadPosition(0,10);
-          sleep(1);
+          sleep(3);
           CorreccionCVimagePuntero = punteroImagenRGB();
           cv_bridge::CvImageConstPtr CorreccionCVimageBridge = cv_bridge::toCvShare(CorreccionCVimagePuntero, sensor_msgs::image_encodings::BGR8);
           cv::Mat CorreccionCVimageMat = CorreccionCVimageBridge->image;
-          cv::line(CorreccionCVimageMat, cv::Point(160,5), cv::Point(160,315), cv::Scalar(0,0,255), 1, 8);
+          cv::line(CorreccionCVimageMat, cv::Point(320,5), cv::Point(320,315), cv::Scalar(0,0,255), 1, 8);
 
-          snprintf(pathmapAreaDetectedBBOX, 512, "/home/steven/Desktop/debug/mapAreaDetectedBBOX%03d.jpg", contadorImagenes);     
+          snprintf(pathmapAreaDetectedBBOX, 512, "/home/steven/Desktop/debug/primeraparte/mapAreaDetectedBBOX%03d.jpg", contadorImagenes);     
           cv::imwrite( pathmapAreaDetectedBBOX, imageCV);
 
-          snprintf(pathmapAreaDrawCenteredLine, 512, "/home/steven/Desktop/debug/mapAreaDrawCenteredLine%03d.jpg", contadorImagenes);
+          snprintf(pathmapAreaDrawCenteredLine, 512, "/home/steven/Desktop/debug/primeraparte/mapAreaDrawCenteredLine%03d.jpg", contadorImagenes);
           cv::imwrite(pathmapAreaDrawCenteredLine, CorreccionCVimageMat);          
           DetectedObject_pub.publish(messageObject);
           keepMapping = false;
@@ -374,12 +384,14 @@ void callBack(const std_msgs::String::ConstPtr& messageObject)
 
      parametroHead++;
 
+     /*
      if(parametroHead > 5){
       parametroBase++;
       parametroHead=-5;
-      RotateBaseYPR(90,0,0);
+      RotateBaseYPR(140,0,0);
       sleep(1);
       }
+      */
 
       if(parametroBase > 4){
         keepMapping = false;
