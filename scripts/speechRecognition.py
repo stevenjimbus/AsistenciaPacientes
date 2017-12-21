@@ -21,6 +21,7 @@ def talker():
     
     rospy.init_node('talker', anonymous=True)
     pub = rospy.Publisher('/speechclassObject', String, queue_size=10)
+    pubPepperSpeech = rospy.Publisher('/speech', String, queue_size=10)
     rate = rospy.Rate(10) # 10hz
     i=0
 
@@ -47,6 +48,7 @@ def talker():
 
 		        if respuesta_google_online == "okay paper":
 		            print("Trigger reconocido")
+		            pubPepperSpeech.publish("si?")
 		            #playsound('sample1.mp3')
 		            #print("acabar")
 		            r2 = sr.Recognizer()
@@ -76,9 +78,9 @@ def talker():
 			            			pub.publish(listapalabras[1])	
 			            		else:
 			            			print("objeto no disponible")
+			            			pubPepperSpeech.publish("Instrucción no valida")
 
-		            		
-
+		            	
 
 
 		            	

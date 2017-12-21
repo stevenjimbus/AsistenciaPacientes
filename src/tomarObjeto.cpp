@@ -479,13 +479,13 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
     if(MessageFromCallBack.compare("botella") == 0)
     {
         system("python /home/steven/importantPythonScripts/prepararTomarBotella.py");
-        AvanzarHaciaElObjeto=0.78;
+        AvanzarHaciaElObjeto=0.765;
     }
 
     if(MessageFromCallBack.compare("cafe") == 0)
     {
         system("python /home/steven/importantPythonScripts/prepararTomarCafe.py");
-        AvanzarHaciaElObjeto=0.78;       
+        AvanzarHaciaElObjeto=0.76;       
     }
 
     if(MessageFromCallBack.compare("palomitas") == 0)
@@ -567,6 +567,9 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
           system("python /home/steven/importantPythonScripts/sujetarBotella.py");
           std::cout << "Terminar Agarrando El objeto" << std::endl;
           sleep(3);
+
+          ShoulderPitch(-10,1,-10,1);
+          sleep(2);
                    
           DesplazarBaseXYZ(-1,0,0);
           sleep(2);
@@ -583,6 +586,9 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
           system("python /home/steven/importantPythonScripts/sujetarCafe.py");
           std::cout << "Terminar Agarrando El objeto" << std::endl;
           sleep(3);
+
+          ShoulderPitch(-10,1,-10,1);
+          sleep(2);
                    
           DesplazarBaseXYZ(-1,0,0);
           sleep(2);
@@ -599,6 +605,9 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
           system("python /home/steven/importantPythonScripts/sujetarPalomitas.py");
           std::cout << "Terminar Agarrando El objeto" << std::endl;
           sleep(3);
+
+          ShoulderPitch(-10,1,-10,1);
+          sleep(2);
                    
           DesplazarBaseXYZ(-1,0,0);
           sleep(2);
@@ -616,6 +625,9 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
           system("python /home/steven/importantPythonScripts/sujetarChocolate.py");
           std::cout << "Terminar Agarrando El objeto" << std::endl;
           sleep(3);
+
+          ShoulderPitch(-10,1,-10,1);
+          sleep(2);
                    
           DesplazarBaseXYZ(-1,0,0);
           sleep(2);
