@@ -1,8 +1,5 @@
 <launch>
 
-  <!-- call nodo speechrecognition -->  
-  <node pkg="rcnn_live_detector" type="speechRecognition.py" name="speechRecognition" output="screen">
-  </node>
   <!-- call nodo mapArea -->  
   <node pkg="rcnn_live_detector" type="mapArea" name="mapArea" output="screen">
   </node>

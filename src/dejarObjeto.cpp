@@ -544,9 +544,10 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
         if(MessageFromCallBack.compare("QRcodeGOOD") == 0)
         {
           ShoulderPitch(5,1,5,1);
-          sleep(2);
+          sleep(6);
 
           ShoulderRoll(50,1,-50,1);
+          //system("python /home/steven/importantPythonScripts/soltarobjeto.py"); 
           sleep(6);
                    
           DesplazarBaseXYZ(-0.6,0,0);

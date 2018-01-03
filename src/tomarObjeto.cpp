@@ -479,13 +479,13 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
     if(MessageFromCallBack.compare("botella") == 0)
     {
         system("python /home/steven/importantPythonScripts/prepararTomarBotella.py");
-        AvanzarHaciaElObjeto=0.765;
+        AvanzarHaciaElObjeto=0.75;
     }
 
     if(MessageFromCallBack.compare("cafe") == 0)
     {
         system("python /home/steven/importantPythonScripts/prepararTomarCafe.py");
-        AvanzarHaciaElObjeto=0.76;       
+        AvanzarHaciaElObjeto=0.81;       
     }
 
     if(MessageFromCallBack.compare("palomitas") == 0)
@@ -571,7 +571,7 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
           ShoulderPitch(-10,1,-10,1);
           sleep(2);
                    
-          DesplazarBaseXYZ(-1,0,0);
+          DesplazarBaseXYZ(-1.2,0,0);
           sleep(2);
 
           ShoulderPitch(30,1,30,1);
@@ -590,7 +590,7 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
           ShoulderPitch(-10,1,-10,1);
           sleep(2);
                    
-          DesplazarBaseXYZ(-1,0,0);
+          DesplazarBaseXYZ(-1.2,0,0);
           sleep(2);
 
           ShoulderPitch(30,1,30,1);
@@ -609,7 +609,7 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
           ShoulderPitch(-10,1,-10,1);
           sleep(2);
                    
-          DesplazarBaseXYZ(-1,0,0);
+          DesplazarBaseXYZ(-1.2,0,0);
           sleep(2);
 
           ShoulderPitch(30,1,30,1);
@@ -629,7 +629,7 @@ void callBack(const rcnn_live_detector::msgTomarObjeto ReceivedMessage)
           ShoulderPitch(-10,1,-10,1);
           sleep(2);
                    
-          DesplazarBaseXYZ(-1,0,0);
+          DesplazarBaseXYZ(-1.2,0,0);
           sleep(2);
 
           ShoulderPitch(30,1,30,1);
