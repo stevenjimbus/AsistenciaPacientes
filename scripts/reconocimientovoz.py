@@ -24,7 +24,8 @@ def myhook():
   print "shutdown time!"
 
 
-def talker():    
+def talker():
+    
     rospy.init_node('talker', anonymous=True)
     pub = rospy.Publisher('/speechclassObject', String, queue_size=10)
     pubPepperSpeech = rospy.Publisher('/speech', String, queue_size=10)
@@ -49,7 +50,8 @@ def talker():
         print("Set minimum energy threshold to {}".format(r.energy_threshold))
 
 
-        
+        print("####################################")
+        print("####################################")
         print("Decir okay pepper ")
         with m as source: audio = r.listen(source)
         print("Got it! Now to recognize it...")
@@ -95,7 +97,7 @@ def talker():
               if listapalabras[0]=="traer":
                 if listapalabras[1]=="botella":
                   print("publicando" + listapalabras[1])
-                  #pub.publish(listapalabras[1])
+                  pub.publish(listapalabras[1])
                 elif palabraDECO=="cafA":
                   print("publicando" + "cafe" )
                   #pub.publish("cafe")
